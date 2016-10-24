@@ -34,6 +34,16 @@ function destroySession(){
 	session_destroy();
 }
 
+function sanitizeString($var){
+	global $connection;
+
+	$var = strip_tags($var);
+	$var = htmlentities($var);
+	$var = stripslashes($var);
+
+	return $connection->real_escape_string($var);
+}
+
 function showProfile($user){
 	if(file_exists("$user.jpg"))
 		echo "<img src='$user.jpg' style='float:left;'>";
