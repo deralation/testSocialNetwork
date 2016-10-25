@@ -4,9 +4,10 @@ $dbhost = "localhost"; // Unlikely to require changing
 $dbname = "socialNetwork"; // Modify these...
 $dbuser = "root"; //...variables according
 $dbpass = "root"; //...to your installation
-$appname = "testSocialNetwork" //...and preference
+$appname = "testSocialNetwork"; //...and preference
 
 $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname); 
+
 if($connection->connect_error)
 	die($connection->connect_error);
 
