@@ -14,7 +14,13 @@ function checkUser(user){
 	request = new ajaxRequest()
 	request.open("POST","checkuser.php",true)
 
-	
+	request.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+	request.setRequestHeader("Content-length","params.length")
+
+	request.setRequestHeader("Connection","close")
+	request.onreadystatechange = function(){
+		if()
+	}
 }
 
 ?>
