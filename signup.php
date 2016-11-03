@@ -3,9 +3,11 @@ require_once "header.php";
 
 echo <<<_END
 <script>
-function checkUser(user){
-	if(user.value == ''){
-		o('info').innerHTML=''
+function checkUser(user)
+{
+	if(user.value == '')
+	{
+		O('info').innerHTML=''
 		return
 	}
 
@@ -14,7 +16,8 @@ function checkUser(user){
 	request.open("POST","checkuser.php",true)
 	request.setRequestHeader("Content-type",params.length)
 	request.setRequestHeader("Connection","close")
-	request.onreadystatechange = function(){
+	request.onreadystatechange = function()
+	{
 		if(this.readyState == 4)
 			if(this.status == 200)
 				if(this.responseText != null)
@@ -25,23 +28,27 @@ function checkUser(user){
 
 
 function ajaxRequest(){
-	try{
-		var request = new XMLHttpRequest()}
-		catch(e1){
-			try{request = new ActiveXObject("Msxml2.XMLHTTP")}
-			catch(e2){
-				try{request = new ActiveXObject("Microsoft.XMLHTTP")}
+	try{var request = new XMLHttpRequest()}
+		catch(e1){try{request = new ActiveXObject("Msxml2.XMLHTTP")}
+			catch(e2){try{request = new ActiveXObject("Microsoft.XMLHTTP")}
 				catch(e3){
 					request = false
 				}
 			}
 		}
-		return request 
-
-	}
+	return request 
 }
 </script>
 <div class='main'><h3>Please enter your details to sign up </h3>
-__END;
+_END;
+
+$error = $user = $pass = "";
+if(isset($_SESSION["user"]))
+	destroySession();
+
+if(isset($_POST["user"])){
+	$user = sanitizeString($_POST["user"]);
+}
+
 
 ?>
