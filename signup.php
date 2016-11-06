@@ -42,13 +42,33 @@ function ajaxRequest(){
 <div class='main'><h3>Please enter your details to sign up </h3>
 _END;
 
-$error = $user = $pass = "";
-if(isset($_SESSION["user"]))
-	destroySession();
+	$error = $user = $pass = "";
+	if(isset($_SESSION["user"]))
+		destroySession();
 
-if(isset($_POST["user"])){
-	$user = sanitizeString($_POST["user"]);
+	if(isset($_POST["user"]))
+	{
+		$user = sanitizeString($_POST["user"]);
+		$pass = sanitizeString($_POST["pass"]);
+	}
+
+	if($user == "" || $pass == "")
+		$error = "Not all fields were entered<br><br>";
+	else
+	{
+		$result = queryMysql("SELECT * FROM members WHERE user='$user'");
+
+		if($result->num_rows)
+			$error = "That username is already exits<br><br>";
+		else{
+			queryMysql("INSERT INTO members VALUES('$user','$pass')");
+			die("<h4>Account Created</h4>Please log in.<br><br>");
+		}
+	}
 }
 
+echo <<<_END
+	<form method="post">
+_END;
 
 ?>
