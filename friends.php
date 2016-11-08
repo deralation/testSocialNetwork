@@ -31,6 +31,9 @@ for ($i=0; $i < $num ; $i++) {
 	$followers[$j] = $row['friend']; 
 }
 
-
+$mutual = array_intersect($followers, $following);
+$followers = array_diff($followers, $mutual);
+$following = array_diff($following, $mutual);
+$friends = FALSE;
 
 ?>
