@@ -46,4 +46,23 @@ $result = queryMysql($query);
 $num = $result->num_rows;
 
 
+for ($i=0; $i < $num; $i++) { 
+	$row = $result->fetch_array(MYSQL_ASSOC);
+
+	if($row['pm']==0) || $row['auth'] == $user || $row['recip'] == $user){
+		echo date('M js \'y g:ia:',$row['time']);
+
+		echo "<a href='messages.php?view=".$row['auth']."'>".$row['auth']."</a>";
+
+		if($row['pm'] == 0)
+			echo "wrote: &quot;".$row['message']."&quot;";
+		else
+			echo "whispered: <span class='whisper'>&quot;";.$row['message']."&quot;</span>";
+
+		if($row['recip'] == $user)
+			echo "[<a href='messages.php?view=$view"."&erase=".$row['id']."'>erase</a>]";
+	}
+}
+
+
 ?>
