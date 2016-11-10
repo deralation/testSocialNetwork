@@ -17,5 +17,11 @@ if($_POST['text']){
 	}
 }
 
+if($view != ""){
+	if( $view == $user) $name1 = $name2 = "Your" ;
+}else{
+	$name1 = "<a href='members.php?view=$view'>$view</a>'s";
+	$name2 = "$view's";
+}
 
 ?>
