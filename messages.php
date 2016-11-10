@@ -61,8 +61,17 @@ for ($i=0; $i < $num; $i++) {
 
 		if($row['recip'] == $user)
 			echo "[<a href='messages.php?view=$view"."&erase=".$row['id']."'>erase</a>]";
+		}
 	}
 }
 
+if(!$num) echo "<br><span class='info'>No messages yet</span><br><br>";
+
+echo "<br><a class='button' href='messages.php?view=$view'>Refresh Messages</a>";
+
 
 ?>
+
+		</div><br>
+	</body>
+</html>	
